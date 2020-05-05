@@ -37,6 +37,8 @@ namespace MyApplication.Areas.Admin.Controllers
         // GET: Admin/Products/Create
         public ActionResult Create()
         {
+			ViewBag.Groups = DatabaseContext.ProductGroups.ToList();
+
             return View();
         }
 

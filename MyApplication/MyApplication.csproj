@@ -1313,6 +1313,7 @@
     <Content Include="ckeditor\_samples\adobeair\run.sh" />
     <Content Include="ckeditor\_samples\assets\output_for_flash.fla" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Images\ProductImages\images.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -1402,7 +1403,6 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\UserPanel\Data\" />
     <Folder Include="Areas\UserPanel\Views\Shared\" />
-    <Folder Include="Images\NewFolder1\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

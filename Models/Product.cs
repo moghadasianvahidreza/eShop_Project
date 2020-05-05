@@ -40,6 +40,7 @@ namespace Models
 		public string ShortDescription { get; set; }
 
 		// **********
+		[System.Web.Mvc.AllowHtml]
 		[Display(Name = "متن")]
 		[Required(AllowEmptyStrings = false, ErrorMessage = "لطفا {0} را وارد کنید")]
 		[DataType(DataType.MultilineText)]

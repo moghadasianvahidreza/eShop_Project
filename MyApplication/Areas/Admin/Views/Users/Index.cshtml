@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Models.User>
+
+@{
+	string title = "لیست کاربران";
+	ViewBag.Title = title;
+	Layout = "~/Views/Shared/Layouts/_Default.cshtml";
+}
+
+<h2>
+	@title
+</h2>
+
+<br />
+
+<p>
+	@*@Html.ActionLink("Create New", "Create")*@
+	<a class="btn btn-primary" href="@Url.Action("Create")">افزودن کاربر جدید</a>
+</p>
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Username)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Role.RoleTitle)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.EmailAddress)
+		</th>
+		@*<th>
+				@Html.DisplayNameFor(model => model.Password)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.ActiveCode)
+			</th>*@
+		<th>
+			@Html.DisplayNameFor(model => model.IsActive)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.RegisterDate)
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Username)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Role.RoleTitle)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.EmailAddress)
+			</td>
+			@*<td>
+					@Html.DisplayFor(modelItem => item.Password)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.ActiveCode)
+				</td>*@
+			<td>
+				@Html.DisplayFor(modelItem => item.IsActive)
+			</td>
+			<td>
+				@item.RegisterDate.ToShamsi()
+			</td>
+			<td>
+				@*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+					@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+					@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+
+				<a class="btn btn-success btn-sm" href="@Url.Action("Edit", new {id = item.Id})">
+					<i class="fa fa-edit"></i>
+				</a>
+
+				<a class="btn btn-default btn-sm" href="@Url.Action("Details", new {id = item.Id})">
+					<i class="fa fa-list"></i>
+				</a>
+
+				<a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new {id = item.Id})">
+					<i class="fa fa-trash"></i>
+				</a>
+			</td>
+		</tr>
+	}
+
+</table>

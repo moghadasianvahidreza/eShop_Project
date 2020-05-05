@@ -1,0 +1,12 @@
+﻿
+@{
+	/**/
+
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/Layouts/_Default.cshtml";
+}
+
+@section Slider
+{
+	@Html.Action(actionName:"_SliderPartialView",controllerName: "Home");
+}

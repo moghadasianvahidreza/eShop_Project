@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Models.ProductGroup>
+
+<table class="table table-bordered table-condensed table-hover table-striped">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.GroupTitle)
+		</th>
+		<th>
+			@*@Html.DisplayNameFor(model => model.ParentId)*@
+			زیر گروه ها
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model.Where(current => current.ParentId == null))
+	{
+		<tr id="group_@item.GroupId">
+			<td>
+				@*@Html.DisplayFor(modelItem => item.GroupTitle)*@
+				@item.GroupTitle
+			</td>
+			@if (Model.Any(current => current.ParentId == item.GroupId))
+			{
+				<td>
+					@*@Html.DisplayFor(modelItem => item.ParentId)*@
+					<ul>
+						@foreach (var subGroup in Model.Where(current => current.ParentId == item.GroupId))
+						{
+							<li id="group_@subGroup.GroupId">
+								@subGroup.GroupTitle
+
+								<a class="text-warning pull-left" data-toggle="tooltip" title="ویرایش" onclick="Edit(@subGroup.GroupId)">
+									<i class="glyphicon glyphicon-edit"></i>
+								</a>
+
+								<a class="text-danger pull-left" data-toggle="tooltip" title="حذف" onclick="Delete(@subGroup.GroupId)">
+									<i class="glyphicon glyphicon-trash"></i>
+								</a>
+							</li>
+						}
+					</ul>
+				</td>
+			}
+			else
+			{
+				<td></td>
+			}
+			<td>
+				@*@Html.ActionLink("Edit", "Edit", new { id = item.GroupId }) |
+					@Html.ActionLink("Details", "Details", new { id = item.GroupId }) |
+					@Html.ActionLink("Delete", "Delete", new { id = item.GroupId })*@
+
+				<a class="btn btn-primary btn-xs center-block" data-toggle="tooltip" title="افزودن زیر گروه" onclick="Create(@item.GroupId)">
+					<i class="glyphicon glyphicon-plus"></i>
+				</a>
+
+				<a class="btn btn-warning btn-xs center-block" data-toggle="tooltip" title="ویرایش" onclick="Edit(@item.GroupId)">
+					<i class="glyphicon glyphicon-edit"></i>
+				</a>
+
+				<a class="btn btn-danger btn-xs center-block" data-toggle="tooltip" title="حذف" onclick="Delete(@item.GroupId)">
+					<i class="glyphicon glyphicon-trash"></i>
+				</a>
+			</td>
+		</tr>
+	}
+
+</table>

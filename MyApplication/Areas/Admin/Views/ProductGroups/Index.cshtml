@@ -1,0 +1,72 @@
+﻿@{
+	string title = "گروه بندی محصولات";
+	ViewBag.Title = title;
+	//Layout = "~/Views/Shared/Layouts/_Default.cshtml";
+}
+
+<h2>
+	@title
+</h2>
+
+<br />
+
+<p>
+	@*@Html.ActionLink("Create New", "Create")*@
+	<a class="btn btn-success" onclick="Create()">افزودن سر گروه جدید</a>
+</p>
+
+<div id="listGroup">
+	@Html.Action("List")
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelleDatabaseContexty="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			</div>
+			<div class="modal-body" id="myModalBody">
+				...
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+
+	function Create(parentId) {
+		$.get("/Admin/ProductGroups/Create/" + parentId,
+			function (result) {
+				$("#myModal").modal();
+				$("#myModalLabel").html("افزودن گروه جدید");
+				$("#myModalBody").html(result);
+			});
+	}
+
+	function Edit(id) {
+		$.get("/Admin/ProductGroups/Edit/" + id,
+			function (result) {
+				$("#myModal").modal();
+				$("#myModalLabel").html("ویرایش گروه ");
+				$("#myModalBody").html(result);
+			});
+	}
+
+	function Delete(id) {
+		if (confirm("آیا از حذف مطمئن هستید ؟")) {
+			$.get("/Admin/ProductGroups/Delete/" + id,
+				function () {
+					$("#group_" + id).hide('slow');
+				});
+		}
+	}
+
+	function Success() {
+		$("#myModal").modal("hide");
+	}
+</script>

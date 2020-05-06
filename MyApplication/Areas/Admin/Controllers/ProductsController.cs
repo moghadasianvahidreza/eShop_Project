@@ -47,12 +47,57 @@ namespace MyApplication.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId,ProductTitle,ShortDescription,Text,Price,CreateDate,ImageName")] Product product)
+        public ActionResult Create([Bind(Include = "ProductId,ProductTitle,ShortDescription,Text,Price,CreateDate,ImageName")] Product product, List<int> selectedGroups,HttpPostedFileBase imageProduct, string tags)
         {
+			if (selectedGroups == null)
+			{
+				ViewBag.ErrorMessageSelectedGroups = true;
+
+				ViewBag.Groups = DatabaseContext.ProductGroups.ToList();					
+				return View(product);
+			}
+			product.ImageName = "images.png";
+			if (imageProduct != null && imageProduct.IsImage()	)
+			{
+				// How to Save new images
+				product.ImageName = System.Guid.NewGuid().ToString() + System.IO.Path.GetExtension(imageProduct.FileName);
+				imageProduct.SaveAs(Server.MapPath("/Images/ProductImages/" + product.ImageName));
+
+				// How to Resize images for show to Users
+				ImageResizer imageResizer = new ImageResizer();
+				imageResizer.Resize(
+					Server.MapPath("/Images/ProductImages/" + product.ImageName),
+					Server.MapPath("/Images/ProductImages/Thumbnail/" + product.ImageName));
+			}
             if (ModelState.IsValid)
             {
 				product.CreateDate = System.DateTime.Now;
                 DatabaseContext.Products.Add(product);
+
+				// Add product select to tabel's ProductSelectedGroups
+				foreach (int item in selectedGroups)
+				{
+					DatabaseContext.ProductSelectedGroups.Add(new ProductSelectedGroup()
+					{
+						ProductId = product.ProductId,
+						GroupId = item,
+					});
+				}
+
+				// Add key Words to table's ProductTags
+				if (!string.IsNullOrEmpty(tags))
+				{
+					string[] tag = tags.Split(',');
+					foreach (string item in tag)
+					{
+						DatabaseContext.ProductTags.Add(new ProductTag()
+						{
+							ProductId = product.ProductId,
+							Tag = item.Trim(),
+						});
+					}
+					  
+				}
                 DatabaseContext.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -72,7 +117,9 @@ namespace MyApplication.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(product);
+
+			ViewBag.Groups = DatabaseContext.ProductGroups.ToList();
+			return View(product);
         }
 
         // POST: Admin/Products/Edit/5

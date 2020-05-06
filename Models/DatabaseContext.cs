@@ -26,8 +26,14 @@
 
 		public System.Data.Entity.DbSet<User> Users { get; set; }
 
+		public System.Data.Entity.DbSet<ProductTag> ProductTags { get; set; }
+
+		public System.Data.Entity.DbSet<Product> Products { get; set; }
+
 		public System.Data.Entity.DbSet<ProductGroup> ProductGroups { get; set; }
 
-		public System.Data.Entity.DbSet<Models.Product> Products { get; set; }
+		public System.Data.Entity.DbSet<ProductGallery> productGalleries { get; set; }
+
+		public System.Data.Entity.DbSet<ProductSelectedGroup> ProductSelectedGroups { get; set; }
 	}
 }

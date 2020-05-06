@@ -33,7 +33,7 @@ public	class ProductTag : object
 		// **********
 		[Display(Name = "کلمه کلیدی")]
 		[Required(AllowEmptyStrings = false,ErrorMessage = "لطفا {0} را وارد کنید")]
-		[StringLength(maximumLength: 250, MinimumLength = 5)]
+		[StringLength(maximumLength: 250, MinimumLength = 1)]
 		[Index(IsUnique = true)]
 		public string Tag { get; set; }
 	}

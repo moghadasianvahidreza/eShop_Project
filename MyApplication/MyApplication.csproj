@@ -1364,6 +1364,7 @@
     <Compile Include="Utilities\ImageResizer.cs" />
     <Compile Include="Utilities\MyApplicationRoleProvider.cs" />
     <Compile Include="Utilities\PartialToStringClass.cs" />
+    <Compile Include="Utilities\PersianCulture.cs" />
     <Compile Include="Utilities\SendEmail.cs" />
   </ItemGroup>
   <ItemGroup>

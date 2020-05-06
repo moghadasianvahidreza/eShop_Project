@@ -53,7 +53,8 @@ namespace Models
 
 		// **********
 		[Display(Name = "تاریخ ایجاد")]
-		public DateTime CreateDate { get; set; }
+		[DisplayFormat(DataFormatString = "{0: yyyy/MM/dd}")]
+		public System.DateTime CreateDate { get; set; }
 
 		// **********
 		[Display(Name = "تصویر")]

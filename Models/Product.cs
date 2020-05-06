@@ -49,7 +49,6 @@ namespace Models
 		// **********
 		[Display(Name = "قیمت")]
 		[Required(AllowEmptyStrings = false,ErrorMessage = "لطفا {0} را وارد کنید")]
-		[Index(IsUnique = true)]
 		public int Price { get; set; }
 
 		// **********

@@ -102,6 +102,7 @@ namespace MyApplication.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Groups = DatabaseContext.ProductGroups.ToList();
             return View(product);
         }
 
@@ -118,8 +119,11 @@ namespace MyApplication.Areas.Admin.Controllers
                 return HttpNotFound();
             }
 
-			ViewBag.Groups = DatabaseContext.ProductGroups.ToList();
-			return View(product);
+            // Show KeyWords
+            ViewBag.Tags = string.Join(",", product.ProductTags.Select(current => current.Tag).ToList());
+
+            ViewBag.Groups = DatabaseContext.ProductGroups.ToList();
+            return View(product);
         }
 
         // POST: Admin/Products/Edit/5

@@ -48,7 +48,7 @@ namespace Models
 
 		// **********
 		[Display(Name = "قیمت")]
-		[Required(AllowEmptyStrings = false,ErrorMessage = "لطفا {0} را وارد کنید")]
+		[Required(ErrorMessage = "لطفا {0} را وارد کنید")]
 		public int Price { get; set; }
 
 		// **********

@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Models.Product>
+﻿@using Models
+
+@model IEnumerable<Models.Product>
 
 @{
 	ViewBag.Title = "Index";
@@ -8,7 +10,6 @@
 <h2>Index</h2>
 
 <p>
-	@*@Html.ActionLink("Create New", "Create")*@
 	<a class="btn btn-primary" href="@Url.Action("Create")">افزودن محصول جدید</a>
 </p>
 <table class="table table-bordered table-condensed table-hover table-striped">
@@ -16,24 +17,23 @@
 		<th>
 			@Html.DisplayNameFor(model => model.ImageName)
 		</th>
+
 		<th>
 			@Html.DisplayNameFor(model => model.ProductTitle)
 		</th>
-		@*<th>
-				@Html.DisplayNameFor(model => model.ShortDescription)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Text)
-			</th>*@
+
 		<th>
 			گروه های محصول
 		</th>
+
 		<th>
 			@Html.DisplayNameFor(model => model.Price)
 		</th>
+
 		<th>
 			@Html.DisplayNameFor(model => model.CreateDate)
 		</th>
+
 		<th></th>
 	</tr>
 
@@ -41,37 +41,46 @@
 	{
 		<tr>
 			<td>
-				@*@Html.DisplayFor(modelItem => item.ImageName)*@
 				<img class="thumbnail" style="margin:8px auto" src="~/Images/ProductImages/Thumbnail/@item.ImageName" />
 			</td>
+
 			<td>
 				@Html.DisplayFor(modelItem => item.ProductTitle)
 			</td>
+
 			<td>
 				@if (item.ProductSelectedGroups.Any())
 				{
 					<ol>
+						@foreach (var group in item.ProductSelectedGroups.Where(current => current.ProductGroup.ParentId == null))
+						{
+							<li>
+								@group.ProductGroup.GroupTitle
 
+								<ul>
+									@foreach (var subGroup in item.ProductSelectedGroups.Where(current => current.ProductGroup.ParentId == group.GroupId))
+									{
+										<li>
+											@subGroup.ProductGroup.GroupTitle
+										</li>
+									}
+								</ul>
+
+							</li>
+						}
 					</ol>
 				}
 			</td>
-			@*<td>
-					@Html.DisplayFor(modelItem => item.ShortDescription)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Text)
-				</td>*@
+
 			<td>
 				@Html.DisplayFor(modelItem => item.Price)
 			</td>
+
 			<td>
 				@Html.DisplayFor(modelItem => item.CreateDate)
 			</td>
-			<td>
-				@*@Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
-		@Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
-		@Html.ActionLink("Delete", "Delete", new { id = item.ProductId })*@
 
+			<td>
 				<a class="btn btn-default btn-sm btn-block" href="#">ویژگی های محصول</a>
 				<a class="btn btn-info btn-sm btn-block" href="#">گالری تصاویر محصول</a>
 				<a class="btn btn-warning btn-sm btn-block" href="@Url.Action("Edit",new { id = item.ProductId })">ویرایش محصول</a>

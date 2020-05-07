@@ -1312,6 +1312,7 @@
     <Content Include="ckeditor\_samples\adobeair\run.bat" />
     <Content Include="ckeditor\_samples\adobeair\run.sh" />
     <Content Include="ckeditor\_samples\assets\output_for_flash.fla" />
+    <Content Include="Areas\Admin\Views\Products\Gallery.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Images\ProductImages\images.png" />
     <Content Include="Scripts\bootstrap.js" />

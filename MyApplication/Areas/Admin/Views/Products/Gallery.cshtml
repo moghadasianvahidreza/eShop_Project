@@ -1,0 +1,94 @@
+﻿@using Models
+
+@model Models.ProductGallery
+
+@{
+	string title = "گالری تصاویر محصول";
+	ViewBag.Title = title;
+}
+
+<h2>
+	@title
+</h2>
+
+<div class="row">
+	@using (Html.BeginForm("Gallery", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+	{
+		@Html.AntiForgeryToken()
+		@Html.HiddenFor(current => current.ProductId)
+
+		<div class="col-md-4">
+			<div class="form-horizontal">
+				<hr />
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.ImageName, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@*@Html.EditorFor(model => model.ImageName, new { htmlAttributes = new { @class = "form-control" } })*@
+						<input type="file" name="imgUp" />
+						@Html.ValidationMessageFor(model => model.ImageName, "", new { @class = "text-danger" })
+					</div>
+				</div>
+
+			</div>
+
+
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<input type="submit" value="ثبت تصویر" class="btn btn-warning" />
+				</div>
+			</div>
+
+		</div>
+
+		<div class="col-md-8">
+			<hr />
+			@{
+				IList<ProductGallery> productGalleries = ViewBag.Gallery;
+
+				<table class="table table-bordered table-condensed">
+					<tr>
+						<th>تصویر</th>
+						<th>عنوان</th>
+						<th>عملیات</th>
+					</tr>
+
+					@foreach (var item in productGalleries)
+					{
+						<tr>
+							<td>
+								<img class="thumbnail" style="margin: 8px auto" src="~/Images/ProductImages/Thumbnail/@item.ImageName" />
+							</td>
+							<td>
+								@item.Title
+							</td>
+							<td>
+								<a class="btn btn-danger btn-sm" href="~/Admin/Products/DeleteGallery/@item.GalleryId">
+									<i class="glyphicon glyphicon-trash"></i>
+								</a>
+							</td>
+						</tr>
+
+					}
+				</table>
+
+			}
+		</div>
+	}
+</div>
+
+<br />
+
+<div>
+	@Html.ActionLink("بازگشت به لیست ", "Index")
+</div>
+

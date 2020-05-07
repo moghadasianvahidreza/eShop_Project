@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 using Models;
 
 namespace MyApplication.Areas.Admin.Controllers
@@ -241,6 +242,56 @@ namespace MyApplication.Areas.Admin.Controllers
 			DatabaseContext.Products.Remove(product);
 			DatabaseContext.SaveChanges();
 			return RedirectToAction("Index");
+		}
+
+		[HttpGet]
+		public ActionResult Gallery(int id)
+		{
+			ViewBag.Gallery = DatabaseContext.productGalleries.Where(current => current.ProductId == id).ToList();
+
+			return View(new ProductGallery()
+			{
+				ProductId = id,
+			});
+		}
+
+		[HttpPost]
+		public ActionResult Gallery(ProductGallery gallery, HttpPostedFileBase imgUp)
+		{
+			if (ModelState.IsValid)
+			{
+				if (imgUp != null && imgUp.IsImage())
+				{
+					// How to Save new images
+					gallery.ImageName = Guid.NewGuid().ToString() + Path.GetExtension(imgUp.FileName);
+					imgUp.SaveAs(Server.MapPath("~/Images/ProductImages/" + gallery.ImageName));
+
+					// How to Resize images for show to Users
+					ImageResizer resizer = new ImageResizer();
+					resizer.Resize(
+						Server.MapPath("/Images/ProductImages/" + gallery.ImageName),
+						Server.MapPath("/Images/ProductImages/Thumbnail/" + gallery.ImageName));
+
+					DatabaseContext.productGalleries.Add(gallery);
+					DatabaseContext.SaveChanges();
+				}
+			}
+
+			return RedirectToAction("Gallery", new { id = gallery.ProductId });
+		}
+
+		public ActionResult DeleteGallery(int id)
+		{
+			var oGallery = DatabaseContext.productGalleries.Find(id);
+
+			System.IO.File.Delete(Server.MapPath("/Images/ProductImages/" + oGallery.ImageName));
+			System.IO.File.Delete(Server.MapPath("/Images/ProductImages/Thumbnail/" + oGallery.ImageName));
+
+			DatabaseContext.productGalleries.Remove(oGallery);
+			DatabaseContext.SaveChanges();
+
+
+			return RedirectToAction("Gallery", new { id = oGallery.ProductId });
 		}
 
 		protected override void Dispose(bool disposing)

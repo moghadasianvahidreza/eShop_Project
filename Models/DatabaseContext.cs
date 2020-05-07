@@ -17,8 +17,9 @@
 			//	(new System.Data.Entity.CreateDatabaseIfNotExists<DatabaseContext>());
 		}
 
-		public DatabaseContext() : base("DatabaeContext-MyApplication")
+		public DatabaseContext() : base()
 		{
+
 			System.Data.Entity.Database.SetInitializer(new DatabaseContextInitializer());
 		}
 

@@ -3,7 +3,7 @@
 @model Models.Product
 
 @{
-	string title = "افزودن محصول جدید";
+	string title = "ویرایش محصول";
 	ViewBag.Title = title;
 	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
@@ -13,8 +13,12 @@
 </h2>
 
 <div class="row">
-	@using (Html.BeginForm("create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+	@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
 	{
+		@Html.HiddenFor(current => current.ProductId)
+		@Html.HiddenFor(current => current.ImageName)
+		@Html.HiddenFor(current => current.CreateDate)
+
 		<div class="col-md-8">
 			@Html.AntiForgeryToken()
 			@if (ViewBag.ErrorMessageSelectedGroups == true)
@@ -69,7 +73,7 @@
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-10">
-						<input type="submit" value="ثبت محصول" class="btn btn-success" />
+						<input type="submit" value="ویرایش محصول" class="btn btn-primary" />
 					</div>
 				</div>
 			</div>
@@ -100,20 +104,23 @@
 				<div class="panel-body">
 					@{
 						IList<ProductGroup> productGroups = ViewBag.Groups;
+
+						IList<ProductSelectedGroup> selectedGroups = ViewBag.SelectedGroup;
+
 						<ul>
 							@foreach (var item in productGroups)
 							{
 								if (item.ParentId == null)
 								{
 									<li style="list-style-type:none">
-										<input type="checkbox" name="selectedGroups" value="@item.GroupId" /> <span>@item.GroupTitle</span>
+										<input type="checkbox" @((selectedGroups.Any(current => current.GroupId == item.GroupId)) ? "checked" : "") name="selectedGroups" value="@item.GroupId" /> <span>@item.GroupTitle</span>
 										@if (productGroups.Any(current => current.ParentId == item.GroupId))
 										{
 											<ul>
 												@foreach (var subGroups in productGroups.Where(current => current.ParentId == item.GroupId))
 												{
 													<li style="list-style-type:none">
-														<input type="checkbox" name="selectedGroups" value="@subGroups.GroupId" /> <span>@subGroups.GroupTitle</span>
+														<input type="checkbox" @((selectedGroups.Any(current => current.GroupId == subGroups.GroupId)) ? "checked" : "") name="selectedGroups" value="@subGroups.GroupId" /> <span>@subGroups.GroupTitle</span>
 													</li>
 												}
 											</ul>

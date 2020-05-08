@@ -20,7 +20,8 @@ namespace Models
 
 		public virtual IList<ProductGallery> ProductGalleries { get; set; }
 
-		// **********
+		public virtual IList<ProductFeature> ProductFeatures { get; set; }
+
 		// **********
 		[Key]
 		public int ProductId { get; set; }

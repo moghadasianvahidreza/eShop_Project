@@ -24,17 +24,13 @@
 		}
 
 		public System.Data.Entity.DbSet<Role> Roles { get; set; }
-
 		public System.Data.Entity.DbSet<User> Users { get; set; }
-
-		public System.Data.Entity.DbSet<ProductTag> ProductTags { get; set; }
-
+		public System.Data.Entity.DbSet<Feature> Features { get; set; }
 		public System.Data.Entity.DbSet<Product> Products { get; set; }
-
+		public System.Data.Entity.DbSet<ProductTag> ProductTags { get; set; }
 		public System.Data.Entity.DbSet<ProductGroup> ProductGroups { get; set; }
-
-		public System.Data.Entity.DbSet<ProductGallery> productGalleries { get; set; }
-
+		public System.Data.Entity.DbSet<ProductFeature> ProductFeatures { get; set; }
+		public System.Data.Entity.DbSet<ProductGallery> ProductGalleries { get; set; }
 		public System.Data.Entity.DbSet<ProductSelectedGroup> ProductSelectedGroups { get; set; }
 	}
 }

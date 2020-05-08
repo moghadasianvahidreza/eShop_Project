@@ -77,7 +77,9 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="DatabaseContextInitializer.cs" />
+    <Compile Include="Feature.cs" />
     <Compile Include="Product.cs" />
+    <Compile Include="ProductFeature.cs" />
     <Compile Include="ProductGallery.cs" />
     <Compile Include="ProductGroup.cs" />
     <Compile Include="ProductSelectedGroup.cs" />

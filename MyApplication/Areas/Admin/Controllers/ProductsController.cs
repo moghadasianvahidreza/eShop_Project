@@ -247,7 +247,7 @@ namespace MyApplication.Areas.Admin.Controllers
 		[HttpGet]
 		public ActionResult Gallery(int id)
 		{
-			ViewBag.Gallery = DatabaseContext.productGalleries.Where(current => current.ProductId == id).ToList();
+			ViewBag.Gallery = DatabaseContext.ProductGalleries.Where(current => current.ProductId == id).ToList();
 
 			return View(new ProductGallery()
 			{
@@ -272,7 +272,7 @@ namespace MyApplication.Areas.Admin.Controllers
 						Server.MapPath("/Images/ProductImages/" + gallery.ImageName),
 						Server.MapPath("/Images/ProductImages/Thumbnail/" + gallery.ImageName));
 
-					DatabaseContext.productGalleries.Add(gallery);
+					DatabaseContext.ProductGalleries.Add(gallery);
 					DatabaseContext.SaveChanges();
 				}
 			}
@@ -282,12 +282,12 @@ namespace MyApplication.Areas.Admin.Controllers
 
 		public ActionResult DeleteGallery(int id)
 		{
-			var oGallery = DatabaseContext.productGalleries.Find(id);
+			var oGallery = DatabaseContext.ProductGalleries.Find(id);
 
 			System.IO.File.Delete(Server.MapPath("/Images/ProductImages/" + oGallery.ImageName));
 			System.IO.File.Delete(Server.MapPath("/Images/ProductImages/Thumbnail/" + oGallery.ImageName));
 
-			DatabaseContext.productGalleries.Remove(oGallery);
+			DatabaseContext.ProductGalleries.Remove(oGallery);
 			DatabaseContext.SaveChanges();
 
 

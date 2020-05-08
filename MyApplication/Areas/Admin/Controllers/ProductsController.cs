@@ -294,6 +294,18 @@ namespace MyApplication.Areas.Admin.Controllers
 			return RedirectToAction("Gallery", new { id = oGallery.ProductId });
 		}
 
+		public ActionResult ProductFeature(int id)
+		{
+			ViewBag.Features = DatabaseContext.ProductFeatures.Where(current => current.FeatureId == id).ToList();
+
+			ViewBag.FeatureId = new SelectList(DatabaseContext.Features, "FeatureId", "Title");
+
+			return View(new ProductFeature()
+			{
+				FeatureId = id,
+			});
+		}
+
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing)

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Models.Feature>
+
+@{
+	string title = "لیست ویژگی های محصول";
+	ViewBag.Title = title;
+}
+
+<h2>
+	@title
+</h2>
+
+<hr />
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-success">افزودن ویژگی های محصول</a>
+</p>
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+			عملیات
+		</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+		<td>
+			<a href="@Url.Action("Edit", new { id = item.FeatureId })" class="btn btn-warning btn-sm">
+				<i class="glyphicon glyphicon-edit"></i>
+			</a>
+			<a href="@Url.Action("Delete", new { id = item.FeatureId })" class="btn btn-danger btn-sm">
+				<i class="glyphicon glyphicon-trash"></i>
+			</a>
+		</td>
+    </tr>
+}
+
+</table>

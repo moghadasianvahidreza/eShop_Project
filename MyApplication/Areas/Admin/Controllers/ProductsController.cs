@@ -294,6 +294,7 @@ namespace MyApplication.Areas.Admin.Controllers
 			return RedirectToAction("Gallery", new { id = oGallery.ProductId });
 		}
 
+		[HttpGet]
 		public ActionResult ProductFeature(int id)
 		{
 			ViewBag.Features = DatabaseContext.ProductFeatures.Where(current => current.FeatureId == id).ToList();
@@ -304,6 +305,20 @@ namespace MyApplication.Areas.Admin.Controllers
 			{
 				FeatureId = id,
 			});
+		}
+
+		[HttpPost]
+		public ActionResult ProductFeature(ProductFeature productFeature)
+		{
+			if (ModelState.IsValid)
+			{
+				DatabaseContext.ProductFeatures.Add(productFeature);
+				DatabaseContext.SaveChanges();
+
+				return RedirectToAction("ProductFeature", new { id = productFeature.ProductId });
+			}
+
+			return View(productFeature);
 		}
 
 		protected override void Dispose(bool disposing)

@@ -620,8 +620,8 @@ window.Modernizr = (function( window, document, undefined ) {
         /**
          * For CSS Gradients syntax, please see:
          * webkit.org/blog/175/introducing-css-gradients/
-         * developer.mozilla.org/en/~/Content/css/-moz-linear-gradient
-         * developer.mozilla.org/en/~/Content/css/-moz-radial-gradient
+         * developer.mozilla.org/en/~/Content/~/Areas/Admin/Content/css/-moz-linear-gradient
+         * developer.mozilla.org/en/~/Content/~/Areas/Admin/Content/css/-moz-radial-gradient
          * dev.w3.org/csswg/css3-images/#gradients-
          */
 

@@ -3,7 +3,6 @@
 @{
 	string title = "لیست کاربران";
 	ViewBag.Title = title;
-	Layout = "~/Views/Shared/Layouts/_Default.cshtml";
 }
 
 <h2>
@@ -80,7 +79,7 @@
 				</a>
 
 				<a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new {id = item.Id})">
-					<i class="fa fa-trash"></i>
+					<i class="fa fa-trash-o"></i>
 				</a>
 			</td>
 		</tr>

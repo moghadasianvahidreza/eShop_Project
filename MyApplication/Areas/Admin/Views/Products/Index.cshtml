@@ -3,11 +3,13 @@
 @model IEnumerable<Models.Product>
 
 @{
-	ViewBag.Title = "Index";
-	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+	string title = "لیست محصولات";
+	ViewBag.Title = title;
 }
 
-<h2>Index</h2>
+<h2>
+	@title
+</h2>
 
 <p>
 	<a class="btn btn-primary" href="@Url.Action("Create")">افزودن محصول جدید</a>
@@ -81,7 +83,7 @@
 			</td>
 
 			<td>
-				<a class="btn btn-default btn-sm btn-block" href="@Url.Action("ProductFeature", new { id = item.ProductId})">ویژگی های محصول</a>
+				<a class="btn btn-default btn-sm btn-block" href="@Url.Action("ProductFeature",new {id=item.ProductId})">ویژگی های محصول</a>
 				<a class="btn btn-info btn-sm btn-block" href="@Url.Action("Gallery", new { id = item.ProductId})">گالری تصاویر محصول</a>
 				<a class="btn btn-warning btn-sm btn-block" href="@Url.Action("Edit",new { id = item.ProductId })">ویرایش محصول</a>
 				<a class="btn btn-danger btn-sm btn-block" href="@Url.Action("Delete",new { id = item.ProductId })">حذف محصول</a>

@@ -14,13 +14,18 @@ namespace MyApplication.Areas.Admin.Controllers
 	public class ProductsController : Infrastructure.BaseController
 	{
 
-		// GET: Admin/Products
+		// GET: Admin/Products/Index
+		[HttpGet]
 		public ActionResult Index()
 		{
 			return View(DatabaseContext.Products.ToList());
 		}
 
+		// ******************************
+		// ******************************
+
 		// GET: Admin/Products/Details/5
+		[HttpGet]
 		public ActionResult Details(int? id)
 		{
 			if (id == null)
@@ -36,6 +41,9 @@ namespace MyApplication.Areas.Admin.Controllers
 			return View(product);
 		}
 
+		// ******************************
+		// ******************************
+
 		// GET: Admin/Products/Create
 		public ActionResult Create()
 		{
@@ -44,9 +52,9 @@ namespace MyApplication.Areas.Admin.Controllers
 			return View();
 		}
 
+		// ******************************
+
 		// POST: Admin/Products/Create
-		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-		// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create([Bind(Include = "ProductId,ProductTitle,ShortDescription,Text,Price,CreateDate,ImageName")] Product product, List<int> selectedGroups, HttpPostedFileBase imageProduct, string tags)
@@ -114,6 +122,9 @@ namespace MyApplication.Areas.Admin.Controllers
 			return View(product);
 		}
 
+		// ******************************
+		// ******************************
+
 		// GET: Admin/Products/Edit/5
 		public ActionResult Edit(int? id)
 		{
@@ -136,6 +147,8 @@ namespace MyApplication.Areas.Admin.Controllers
 			ViewBag.Groups = DatabaseContext.ProductGroups.ToList();
 			return View(product);
 		}
+
+		// ******************************
 
 		// POST: Admin/Products/Edit/5
 		[HttpPost]
@@ -191,13 +204,16 @@ namespace MyApplication.Areas.Admin.Controllers
 					.ForEach(current => DatabaseContext.ProductSelectedGroups.Remove(current));
 
 				// Add product select to tabel's ProductSelectedGroups
-				foreach (int item in selectedGroups)
+				if (selectedGroups != null && selectedGroups.Any())
 				{
-					DatabaseContext.ProductSelectedGroups.Add(new ProductSelectedGroup()
+					foreach (int item in selectedGroups)
 					{
-						ProductId = product.ProductId,
-						GroupId = item,
-					});
+						DatabaseContext.ProductSelectedGroups.Add(new ProductSelectedGroup()
+						{
+							ProductId = product.ProductId,
+							GroupId = item,
+						});
+					}
 				}
 
 				DatabaseContext.Entry(product).State = EntityState.Modified;
@@ -218,6 +234,9 @@ namespace MyApplication.Areas.Admin.Controllers
 			return View(product);
 		}
 
+		// ******************************
+		// ******************************
+
 		// GET: Admin/Products/Delete/5
 		public ActionResult Delete(int? id)
 		{
@@ -233,6 +252,8 @@ namespace MyApplication.Areas.Admin.Controllers
 			return View(product);
 		}
 
+		// ******************************
+
 		// POST: Admin/Products/Delete/5
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
@@ -244,6 +265,11 @@ namespace MyApplication.Areas.Admin.Controllers
 			return RedirectToAction("Index");
 		}
 
+		// ******************************
+		// ******************************
+
+		#region Gallery: Create and Delete
+
 		[HttpGet]
 		public ActionResult Gallery(int id)
 		{
@@ -254,6 +280,8 @@ namespace MyApplication.Areas.Admin.Controllers
 				ProductId = id,
 			});
 		}
+
+		// ******************************
 
 		[HttpPost]
 		public ActionResult Gallery(ProductGallery gallery, HttpPostedFileBase imgUp)
@@ -280,6 +308,9 @@ namespace MyApplication.Areas.Admin.Controllers
 			return RedirectToAction("Gallery", new { id = gallery.ProductId });
 		}
 
+		// ******************************
+
+		[HttpGet]
 		public ActionResult DeleteGallery(int id)
 		{
 			var oGallery = DatabaseContext.ProductGalleries.Find(id);
@@ -294,31 +325,50 @@ namespace MyApplication.Areas.Admin.Controllers
 			return RedirectToAction("Gallery", new { id = oGallery.ProductId });
 		}
 
-		[HttpGet]
 		public ActionResult ProductFeature(int id)
 		{
-			ViewBag.Features = DatabaseContext.ProductFeatures.Where(current => current.FeatureId == id).ToList();
+			ViewBag.Features = DatabaseContext.ProductFeatures.Where(current => current.ProductId == id).ToList();
 
 			ViewBag.FeatureId = new SelectList(DatabaseContext.Features, "FeatureId", "Title");
 
 			return View(new ProductFeature()
 			{
-				FeatureId = id,
+				ProductId = id,
 			});
 		}
 
+		// ******************************
+
 		[HttpPost]
-		public ActionResult ProductFeature(ProductFeature productFeature)
+		public ActionResult ProductFeature(ProductFeature feature)
 		{
 			if (ModelState.IsValid)
 			{
-				DatabaseContext.ProductFeatures.Add(productFeature);
+				DatabaseContext.ProductFeatures.Add(feature);
 				DatabaseContext.SaveChanges();
 
-				return RedirectToAction("ProductFeature", new { id = productFeature.ProductId });
+				return RedirectToAction("ProductFeature", new { id = feature.ProductId });
 			}
 
-			return View(productFeature);
+			return View(feature);
+		}
+
+		// ******************************
+
+		//public ActionResult DeleteProductFeature(int id)
+		//{
+		//	var feature = DatabaseContext.ProductFeatures.Find(id);
+		//	DatabaseContext.ProductFeatures.Remove(feature);
+		//	DatabaseContext.SaveChanges();
+
+		//	return RedirectToAction("ProductFeature", new { id = x.ProductId });
+		//}
+
+		public void DeleteProductFeature(int id)
+		{
+			var feature = DatabaseContext.ProductFeatures.Find(id);
+			DatabaseContext.ProductFeatures.Remove(feature);
+			DatabaseContext.SaveChanges();
 		}
 
 		protected override void Dispose(bool disposing)

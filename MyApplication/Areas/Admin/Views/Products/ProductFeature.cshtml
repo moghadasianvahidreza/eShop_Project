@@ -50,7 +50,7 @@
 		<div class="col-md-8">
 			<hr />
 			@{
-				IList<ProductFeature> productGalleries = ViewBag.Features;
+				IList<ProductFeature> productFeatures = ViewBag.Features;
 
 				<table class="table table-bordered table-condensed">
 					<tr>
@@ -59,9 +59,9 @@
 						<th>عملیات</th>
 					</tr>
 
-					@foreach (var item in productGalleries)
+					@foreach (var item in productFeatures)
 					{
-						<tr>
+						<tr id="feature_@(item.ProductFeatureId)">
 							<td>
 								@item.Feature.Title
 							</td>
@@ -69,17 +69,30 @@
 								@item.Value
 							</td>
 							<td>
-								<a class="btn btn-danger btn-sm" href="~/Admin/Products/DeleteProductFeature/@item.ProductFeatureId">
+								@*<a class="btn btn-danger btn-sm" href="~/Admin/Products/DeleteProductFeature/@item.ProductFeatureId">*@
+								<a class="btn btn-danger btn-sm" onclick="DeleteProductFeature(@item.ProductFeatureId)">
 									<i class="glyphicon glyphicon-trash"></i>
 								</a>
 							</td>
 						</tr>
-
 					}
 				</table>
-
 			}
 		</div>
 	}
 </div>
+
+@section Script{
+	<script>
+		function DeleteProductFeature(id) {
+			if (confirm('آیا از حذف مطمئن هستید ؟')) {
+				$.get("/Admin/Products/DeleteProductFeature/" + id,
+					function () {
+						$("#feature_" + id).hide('slow');
+					});
+			}
+		}
+	</script>
+}
+
 

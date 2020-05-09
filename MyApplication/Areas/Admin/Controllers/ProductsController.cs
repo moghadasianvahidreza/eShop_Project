@@ -309,6 +309,7 @@ namespace MyApplication.Areas.Admin.Controllers
 		}
 
 		// ******************************
+		// ******************************
 
 		[HttpGet]
 		public ActionResult DeleteGallery(int id)
@@ -337,7 +338,12 @@ namespace MyApplication.Areas.Admin.Controllers
 			});
 		}
 
+		#endregion
+
 		// ******************************
+		// ******************************
+
+		#region ProductFeature: Create and Delete
 
 		[HttpPost]
 		public ActionResult ProductFeature(ProductFeature feature)
@@ -370,6 +376,11 @@ namespace MyApplication.Areas.Admin.Controllers
 			DatabaseContext.ProductFeatures.Remove(feature);
 			DatabaseContext.SaveChanges();
 		}
+
+		#endregion
+
+		// ******************************	
+		// ******************************
 
 		protected override void Dispose(bool disposing)
 		{

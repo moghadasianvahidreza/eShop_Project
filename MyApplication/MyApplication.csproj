@@ -1465,6 +1465,9 @@
     <Content Include="Views\Account\SuccessSendEmailAddressForRecoveryPassword.cshtml" />
     <Content Include="Views\Account\RecoveryPassword.cshtml" />
     <Content Include="Views\Product\_ShowGroupsPartialView.cshtml" />
+    <Content Include="Views\Product\_LastProduct.cshtml" />
+    <Content Include="Views\Shared\PartialViews\_Product.cshtml" />
+    <Content Include="Views\Product\ShowProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

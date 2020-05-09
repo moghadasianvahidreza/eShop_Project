@@ -24,5 +24,24 @@ namespace MyApplication.Controllers
 
 			return PartialView(model: products);
 		}
+
+		public ActionResult _LastProduct()
+		{
+			var lastProducts = DatabaseContext.Products.OrderByDescending(current => current.CreateDate).Take(12);
+
+			return PartialView(lastProducts);
+		}
+
+		[Route("ShowProduct/{id}")]
+		public ActionResult ShowProduct(int id)
+		{
+			var product = DatabaseContext.Products.Find(id);
+			if (product == null)
+			{
+				return HttpNotFound();
+			}
+
+			return View(product);
+		}
 	}
 }

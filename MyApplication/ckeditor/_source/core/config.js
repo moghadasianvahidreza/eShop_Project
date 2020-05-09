@@ -87,8 +87,8 @@ CKEDITOR.config =
 	 * @type String|Array
 	 * @default <code>'<em>&lt;CKEditor folder&gt;</em>/contents.css'</code>
 	 * @example
-	 * config.contentsCss = '/css/mysitestyles.css';
-	 * config.contentsCss = ['/css/mysitestyles.css', '/css/anotherfile.css'];
+	 * config.contentsCss = '/~/Areas/Admin/Content/css/mysitestyles.css';
+	 * config.contentsCss = ['/~/Areas/Admin/Content/css/mysitestyles.css', '/~/Areas/Admin/Content/css/anotherfile.css'];
 	 */
 	contentsCss : CKEDITOR.basePath + 'contents.css',
 

@@ -204,13 +204,16 @@ namespace MyApplication.Areas.Admin.Controllers
 					.ForEach(current => DatabaseContext.ProductSelectedGroups.Remove(current));
 
 				// Add product select to tabel's ProductSelectedGroups
-				foreach (int item in selectedGroups)
+				if (selectedGroups != null && selectedGroups.Any())
 				{
-					DatabaseContext.ProductSelectedGroups.Add(new ProductSelectedGroup()
+					foreach (int item in selectedGroups)
 					{
-						ProductId = product.ProductId,
-						GroupId = item,
-					});
+						DatabaseContext.ProductSelectedGroups.Add(new ProductSelectedGroup()
+						{
+							ProductId = product.ProductId,
+							GroupId = item,
+						});
+					}
 				}
 
 				DatabaseContext.Entry(product).State = EntityState.Modified;

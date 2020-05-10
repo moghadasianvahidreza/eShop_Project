@@ -54,6 +54,7 @@
     <Compile Include="ChangePasswordViewModel.cs" />
     <Compile Include="ForgotPasswordViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />
+    <Compile Include="ProductFeaturesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecoveryPasswordViewModel.cs" />
     <Compile Include="RegisterViewModel.cs" />

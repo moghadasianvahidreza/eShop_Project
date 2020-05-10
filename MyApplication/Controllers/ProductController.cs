@@ -36,6 +36,21 @@ namespace MyApplication.Controllers
 		public ActionResult ShowProduct(int id)
 		{
 			var product = DatabaseContext.Products.Find(id);
+
+			ViewBag.ProductFeature = product.ProductFeatures
+				.DistinctBy(current => current.FeatureId)
+				.Select(current => new ViewModels.ProductFeaturesViewModel()
+				{
+					FeatureTitle = current.Feature.Title,
+					Values = DatabaseContext.ProductFeatures
+						.Where(value => value.FeatureId == current.FeatureId)
+						.DistinctBy(value => value.Value)
+						.Select(value => value.Value)
+						.ToList(),
+				})
+				.ToList()
+				;
+
 			if (product == null)
 			{
 				return HttpNotFound();

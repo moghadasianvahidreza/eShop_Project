@@ -1384,6 +1384,14 @@
     <Content Include="Areas\Admin\Views\Shared\_DefaultAdmin.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Images\ProductImages\1.png" />
+    <Content Include="Images\ProductImages\11.jpg" />
+    <Content Include="Images\ProductImages\12.jpg" />
+    <Content Include="Images\ProductImages\13.jpg" />
+    <Content Include="Images\ProductImages\14.jpg" />
+    <Content Include="Images\ProductImages\2.jpg" />
+    <Content Include="Images\ProductImages\3.jpg" />
+    <Content Include="Images\ProductImages\4.jpg" />
     <Content Include="Images\ProductImages\images.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1469,6 +1477,7 @@
     <Content Include="Views\Product\_LastProduct.cshtml" />
     <Content Include="Views\Shared\PartialViews\_Product.cshtml" />
     <Content Include="Views\Product\ShowProduct.cshtml" />
+    <Content Include="Views\Product\_ShowComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

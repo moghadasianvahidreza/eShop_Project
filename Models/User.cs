@@ -6,9 +6,7 @@
 		{
 		}
 
-
 		// **********
-
 		[System.ComponentModel.DataAnnotations.Key]
 		public int Id { get; set; }
 
@@ -17,19 +15,18 @@
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = "نقش")]
-		public virtual Role Role { get; set; }
+		public int RoleId { get; set; }
+
 		// **********
 
 		// **********
+
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = "نقش")]
-		public int RoleId { get; set; }
+		public virtual Role Role { get; set; }
 		// **********
 		// **********
 		// **********
-
-		// **********
-
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = "نام کاربری")]
 		[System.ComponentModel.DataAnnotations.Required
@@ -41,7 +38,6 @@
 		public string Username { get; set; }
 
 		// **********
-
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = "آدرس ایمیل")]
 		[System.ComponentModel.DataAnnotations.Required
@@ -53,7 +49,6 @@
 		public string EmailAddress { get; set; }
 
 		// **********
-
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = "گذر واژه")]
 		[System.ComponentModel.DataAnnotations.Required
@@ -65,19 +60,16 @@
 		public string Password { get; set; }
 
 		// **********
-
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = "کد فعالیت")]
 		public string ActiveCode { get; set; }
 
 		// **********
-
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = "Active")]
 		public bool IsActive { get; set; }
 
 		// **********
-
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = "تاریخ ثبت نام")]
 		public System.DateTime RegisterDate { get; set; }

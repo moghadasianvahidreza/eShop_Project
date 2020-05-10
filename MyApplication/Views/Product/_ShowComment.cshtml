@@ -1,0 +1,40 @@
+﻿@using MyApplication.Utilities
+
+@model IEnumerable<Models.ProductComment>
+
+@foreach (var item in Model.Where(current => current.ParentId == null))
+{
+	<li>
+		<a href="" class="reply-button">پاسخ</a>
+
+		<img src="~/Content/img/avatar.jpg" width="65">
+		<div>
+			<h5>ارسال شده از : @item.Name در تاریخ : @item.CreateDate.ToShamsi() </h5>
+			<p>
+				@item.Comment
+			</p>
+		</div>
+		<div class="clearfix"></div>
+		@if (Model.Any(current => current.ParentId == item.ProductCommentId))
+		{
+			<ul>
+				@foreach (var subItem in Model.Where(current => current.ParentId == item.ProductCommentId))
+				{
+					<li>
+						<a href="" class="reply-button">پاسخ</a>
+
+						<img src="~/Content/img/avatar.jpg" width="65">
+						<div>
+							<h5>ارسال شده از : @subItem.Name در تاریخ : @subItem.CreateDate.ToShamsi() </h5>
+							<p>
+								@subItem.Comment
+							</p>
+						</div>
+						<div class="clearfix"></div>
+					</li>
+				}
+			</ul>
+		}
+
+	</li>
+}

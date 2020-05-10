@@ -27,6 +27,8 @@ public	class ProductTag : object
 
 		// **********
 
+		// **********
+
 		public virtual Product Product { get; set; }
 		// **********
 		// **********

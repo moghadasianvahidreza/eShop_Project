@@ -58,5 +58,12 @@ namespace MyApplication.Controllers
 
 			return View(product);
 		}
+
+		public ActionResult _ShowComment(int id)
+		{
+			var product = DatabaseContext.ProductComments.Where(current => current.ProductId == id).ToList();
+
+			return PartialView(product);
+		}
 	}
 }

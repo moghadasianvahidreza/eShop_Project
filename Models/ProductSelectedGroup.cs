@@ -15,7 +15,6 @@ public	class ProductSelectedGroup : object
 		}
 
 		// **********
-
 		[Key]
 		public int ProductSelectedGroupId { get; set; }
 
@@ -24,20 +23,23 @@ public	class ProductSelectedGroup : object
 		// **********
 		[Display(Name = "نام گروه")]
 		public int GroupId { get; set; }
+
 		// **********
 
 		// **********
+
 		[Display(Name = "نام گروه")]
 		public virtual ProductGroup ProductGroup { get; set; }
 		// **********
 		// **********
 		// **********
-
 		[Display(Name = "نام محصول")]
 		public int ProductId { get; set; }
+
 		// **********
 
 		// **********
+
 		[Display(Name = "نام گروه")]
 		public virtual Product Product { get; set; }
 		// **********

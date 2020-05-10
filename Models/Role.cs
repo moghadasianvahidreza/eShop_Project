@@ -7,15 +7,14 @@
 
 		}
 
+		// **********
 		public virtual System.Collections.Generic.IList<User> Users { get; set; }
 
 		// **********
-
 		[System.ComponentModel.DataAnnotations.Key]
 		public int Id { get; set; }
 
 		// **********
-
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = "عنوان نقش")]
 		[System.ComponentModel.DataAnnotations.Required
@@ -23,7 +22,6 @@
 		public string RoleTitle { get; set; }
 
 		// **********
-
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = "عنوان سیستمی نقش")]
 		[System.ComponentModel.DataAnnotations.Required

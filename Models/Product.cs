@@ -22,6 +22,8 @@ namespace Models
 
 		public virtual IList<ProductFeature> ProductFeatures { get; set; }
 
+		public virtual IList<ProductComment> ProductComments { get; set; }
+
 		// **********
 		[Key]
 		public int ProductId { get; set; }

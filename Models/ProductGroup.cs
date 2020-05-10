@@ -13,21 +13,19 @@ namespace Models
 		{
 		}
 
+		// **********
 		public virtual IList<ProductSelectedGroup> ProductSelectedGroups { get; set; }
 
 		// **********
-
 		[System.ComponentModel.DataAnnotations.Key]
 		public int GroupId { get; set; }
 
 		// **********
-
 		[System.ComponentModel.DataAnnotations.Display(Name = "عنوان گروه")]
 		[System.ComponentModel.DataAnnotations.Required(ErrorMessage = "لطفا {0} را وارد کنید")]
 		public string GroupTitle { get; set; }
 
 		// **********
-
 		public int? ParentId { get; set; }
 	}
 }

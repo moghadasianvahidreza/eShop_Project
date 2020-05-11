@@ -1437,6 +1437,7 @@
     <Compile Include="Controllers\ManageEmailsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1482,6 +1483,7 @@
     <Content Include="Views\Product\ShowProduct.cshtml" />
     <Content Include="Views\Product\_ShowComment.cshtml" />
     <Content Include="Views\Product\_CreateComment.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

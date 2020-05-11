@@ -92,26 +92,9 @@
 			<!-- Comment -->
 			<div id="comments" class="tab-pane fade">
 				<div class="comment-layer">
-					<form action="" method="post">
-						<div class="col-md-5">
-							<div class="form-group">
-								<input class="form-control" placeholder="نام و نام خانوادگی" type="text">
-							</div>
-							<div class="form-group">
-								<input class="form-control" placeholder="ایمیل" type="text">
-							</div>
-							<div class="form-group">
-								<input class="form-control" placeholder="وب سایت" type="text">
-							</div>
-						</div>
-						<div class="col-md-7">
-							<textarea class="form-control" placeholder="متن دیدگاه"></textarea>
-							<input class="btn btn-primary" value="ثبت دیدگاه ارزشمند شما" type="submit">
-						</div>
-						<div class="clearfix"></div>
-					</form>
-					<ul class="comment-list">
-					@Html.Action("_ShowComment")
+					@Html.Action("_CreateComment")
+					<ul class="comment-list" id="listComment">
+						@Html.Action("_ShowComment")
 					</ul>
 				</div>
 			</div>
@@ -135,3 +118,12 @@
 
 
 </div>
+
+<script>
+	function SuccessComment() {
+		$("#Name").val("");
+		$("#EmailAddress").val("");
+		$("#Website").val("");
+		$("#Comment").val("");
+	}
+</script>

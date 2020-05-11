@@ -1268,7 +1268,6 @@
     <Content Include="Content\fonts\yekanweb.svg" />
     <Content Include="Content\img\1.jpg" />
     <Content Include="Content\img\2.jpg" />
-    <Content Include="Content\img\3D_Logo-removebg-preview.png" />
     <Content Include="Content\img\avatar.jpg" />
     <Content Include="Content\img\bg.jpg" />
     <Content Include="Content\img\img.jpg" />
@@ -1481,6 +1480,7 @@
     <Content Include="Views\Shared\PartialViews\_Product.cshtml" />
     <Content Include="Views\Product\ShowProduct.cshtml" />
     <Content Include="Views\Product\_ShowComment.cshtml" />
+    <Content Include="Views\Product\_CreateComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

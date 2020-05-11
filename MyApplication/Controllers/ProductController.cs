@@ -18,6 +18,9 @@ namespace MyApplication.Controllers
 			return View();
 		}
 
+		// ******************************
+		// ******************************
+
 		public ActionResult _ShowGroupsPartialView()
 		{
 			var products = DatabaseContext.ProductGroups.ToList();
@@ -25,12 +28,18 @@ namespace MyApplication.Controllers
 			return PartialView(model: products);
 		}
 
+		// ******************************
+		// ******************************
+
 		public ActionResult _LastProduct()
 		{
 			var lastProducts = DatabaseContext.Products.OrderByDescending(current => current.CreateDate).Take(12);
 
 			return PartialView(lastProducts);
 		}
+
+		// ******************************
+		// ******************************
 
 		[Route("ShowProduct/{id}")]
 		public ActionResult ShowProduct(int id)
@@ -59,11 +68,42 @@ namespace MyApplication.Controllers
 			return View(product);
 		}
 
+		// ******************************
+		// ******************************
+
 		public ActionResult _ShowComment(int id)
 		{
-			var product = DatabaseContext.ProductComments.Where(current => current.ProductId == id).ToList();
+			return PartialView(DatabaseContext.ProductComments.Where(current => current.ProductId == id).ToList());
+		}
 
-			return PartialView(product);
+		// ******************************
+		// ******************************
+
+		[HttpGet]
+		public ActionResult _CreateComment(int id)
+		{
+			return PartialView(new Models.ProductComment()
+			{
+				ProductId = id,
+			});
+		}
+
+		// ******************************
+		// ******************************
+
+		[HttpPost]
+		public ActionResult _CreateComment(Models.ProductComment productComment)
+		{
+			if (ModelState.IsValid)
+			{
+				productComment.CreateDate = System.DateTime.Now;
+				DatabaseContext.ProductComments.Add(productComment);
+				DatabaseContext.SaveChanges();
+
+				return PartialView("_ShowComment", DatabaseContext.ProductComments.Where(current => current.ProductId == productComment.ProductId).ToList());
+			}
+
+			return PartialView(productComment);
 		}
 	}
 }

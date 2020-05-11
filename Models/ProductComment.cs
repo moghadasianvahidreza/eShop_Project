@@ -46,7 +46,7 @@ namespace Models
 		[System.ComponentModel.DataAnnotations.Required
 			(AllowEmptyStrings = false, ErrorMessage = "لطفا {0} را وارد کنید")]
 		[System.ComponentModel.DataAnnotations.StringLength
-			(maximumLength: 250, MinimumLength = 6)]
+			(maximumLength: 250)]
 		[System.ComponentModel.DataAnnotations.EmailAddress
 			(ErrorMessage = "ایمیل وارد شده معتبر نمی باشد")]
 		public string EmailAddress { get; set; }
@@ -59,7 +59,7 @@ namespace Models
 
 		// **********
 		[Display(Name = "متن نظر")]
-		[Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+		[Required]
 		[System.ComponentModel.DataAnnotations.StringLength
 			(maximumLength: 800, MinimumLength = 6)]
 		public string Comment { get; set; }

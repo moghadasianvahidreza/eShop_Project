@@ -42,7 +42,7 @@ namespace MyApplication.Controllers
 				.Select(current => new ViewModels.ProductFeaturesViewModel()
 				{
 					FeatureTitle = current.Feature.Title,
-					Values = DatabaseContext.ProductFeatures
+					Values = product.ProductFeatures
 						.Where(value => value.FeatureId == current.FeatureId)
 						.DistinctBy(value => value.Value)
 						.Select(value => value.Value)

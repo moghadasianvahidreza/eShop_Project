@@ -1268,6 +1268,7 @@
     <Content Include="Content\fonts\yekanweb.svg" />
     <Content Include="Content\img\1.jpg" />
     <Content Include="Content\img\2.jpg" />
+    <Content Include="Content\img\3D_Logo-removebg-preview.png" />
     <Content Include="Content\img\avatar.jpg" />
     <Content Include="Content\img\bg.jpg" />
     <Content Include="Content\img\img.jpg" />
@@ -1386,12 +1387,14 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Images\ProductImages\1.png" />
     <Content Include="Images\ProductImages\11.jpg" />
-    <Content Include="Images\ProductImages\12.jpg" />
-    <Content Include="Images\ProductImages\13.jpg" />
-    <Content Include="Images\ProductImages\14.jpg" />
-    <Content Include="Images\ProductImages\2.jpg" />
-    <Content Include="Images\ProductImages\3.jpg" />
-    <Content Include="Images\ProductImages\4.jpg" />
+    <Content Include="Images\ProductImages\Thumbnail\1.png" />
+    <Content Include="Images\ProductImages\Thumbnail\11.jpg" />
+    <Content Include="Images\ProductImages\Thumbnail\12.jpg" />
+    <Content Include="Images\ProductImages\Thumbnail\13.jpg" />
+    <Content Include="Images\ProductImages\Thumbnail\14.jpg" />
+    <Content Include="Images\ProductImages\Thumbnail\2.jpg" />
+    <Content Include="Images\ProductImages\Thumbnail\3.jpg" />
+    <Content Include="Images\ProductImages\Thumbnail\4.jpg" />
     <Content Include="Images\ProductImages\images.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1490,7 +1493,6 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\UserPanel\Data\" />
     <Folder Include="Areas\UserPanel\Views\Shared\" />
-    <Folder Include="Images\ProductImages\Thumbnail\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

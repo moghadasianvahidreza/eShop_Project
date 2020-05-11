@@ -7,8 +7,8 @@
 }))
 {
 	@Html.AntiForgeryToken()
-	@Html.HiddenFor(current => current.ProductId)
-
+	@Html.HiddenFor(m => m.ProductId)
+	@Html.HiddenFor(m => m.ParentId)
 
 		<div class="col-md-5">
 			<div class="form-group">

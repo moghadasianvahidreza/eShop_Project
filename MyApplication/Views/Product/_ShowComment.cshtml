@@ -5,7 +5,7 @@
 @foreach (var item in Model.Where(current => current.ParentId == null))
 {
 	<li>
-		<a href="" class="reply-button">پاسخ</a>
+		<a class="reply-button" onclick="ReplayComment(@item.ProductCommentId)">پاسخ</a>
 
 		<img src="~/Content/img/avatar.jpg" width="65">
 		<div>

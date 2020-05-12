@@ -105,5 +105,52 @@ namespace MyApplication.Controllers
 
 			return PartialView(productComment);
 		}
+
+		// ******************************
+		// ******************************
+
+		[Route("Archive")]
+		public ActionResult Archive(int pageId = 1, string productTitle = "", int minPrice = 0, int maxPrice = 0, List<int> selectedGroups = null)
+		{
+			ViewBag.productGroups = DatabaseContext.ProductGroups.ToList();
+
+			ViewBag.productTitle = productTitle;
+			ViewBag.pageId = pageId;
+			ViewBag.minPrice = minPrice;
+			ViewBag.maxPrice = maxPrice;
+			ViewBag.selectedGroups = selectedGroups;
+
+			IQueryable<Models.Product> list = DatabaseContext.Products;
+
+			//List<Models.Product> list = new List<Models.Product>();
+
+			if (productTitle != null)
+			{
+				list = list.Where(current => current.ProductTitle.Contains(productTitle));
+			}
+			if (minPrice > 0)
+			{
+				list = list.Where(current => current.Price >= minPrice);
+			}
+			if (maxPrice > 0)
+			{
+				list = list.Where(current => current.Price <= maxPrice);
+			}
+
+			//if (selectedGroups != null && selectedGroups.Any())
+			//{
+			//	foreach (int group in selectedGroups)
+			//	{
+			//		list.AddRange(DatabaseContext.ProductSelectedGroups.Where(current => current.GroupId == group).Select(current => current.Product).ToList());
+			//	}
+			//	list = list.Distinct().ToList();
+			//}
+			//else
+			//{
+			//	list.AddRange(DatabaseContext.Products.ToList());
+			//}
+
+			return View(list.ToList());
+		}
 	}
 }

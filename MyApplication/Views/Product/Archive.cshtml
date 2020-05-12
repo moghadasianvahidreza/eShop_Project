@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Models.Product>
+
+@{
+	string title = "آرشیو محصولات";
+	ViewBag.Title = title;
+}
+
+<h2>
+	@title
+</h2>
+
+<hr />
+
+@section Filters {
+	<section class="border-radius basket-side">
+		<header><h3> فیلتر محصولات  </h3></header>
+		<article>
+			<form action="/Archive">
+				<input type="hidden" id="pageId" name="pageid" value="@ViewBag.pageId" />
+				<p>
+					عنوان
+				</p>
+				<input type="text" name="title" class="form-control" value="@ViewBag.productTitle" style="width:100% !important" />
+				<hr />
+				<p>
+					قیمت از ...
+				</p>
+				<input type="number" name="minPrice" class="form-control" value="@ViewBag.minPrice" />
+				<hr />
+				<p>
+					قیمت تا ...
+				</p>
+				<input type="number" name="maxPrice" class="form-control" value="@ViewBag.maxPrice" />
+				<hr />
+				<p>
+					فیلتر بر اساس گروه ها
+				</p>
+				@{
+					List<Models.ProductGroup> groups = ViewBag.productGroups;
+					List<int> selected = ViewBag.selectGroup ?? new List<int>();
+
+					<ul>
+						@foreach (var item in groups.Where(current => current.ParentId == null))
+						{
+							<li>
+								<input type="checkbox" name="selectedGroups" @((selected.Any(s => s == item.GroupId)) ? "checked" : "") value="@item.GroupId" />
+								<span><strong style="color:black !important">@item.GroupTitle</strong></span>
+
+								@if (groups.Any(current => current.ParentId == item.GroupId))
+								{
+									<Ul>
+										@foreach (var subItem in groups.Where(current => current.ParentId == item.GroupId))
+										{
+											<li>
+												<input type="checkbox" name="selectedGroups" @((selected.Any(s => s == subItem.GroupId)) ? "checked" : "") value="@subItem.GroupId" />
+												<span>@subItem.GroupTitle</span>
+											</li>
+										}
+									</Ul>
+								}
+							</li>
+							<li style="border-bottom: 1px dotted #dfdfdf"></li>
+						}
+					</ul>
+				}
+				<input type="submit" class="btn btn-block btn-primary" value="اعمال فیلتر" />
+			</form>
+		</article>
+	</section>
+}
+
+<section class="last-products">
+	<article>
+
+		@foreach (var item in Model)
+		{
+			@Html.Partial("~/Views/Shared/PartialViews/_Product.cshtml", item)
+		}
+
+	<div class="clearfix"></div>
+	</article>
+</section>

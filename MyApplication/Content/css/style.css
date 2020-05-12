@@ -200,7 +200,7 @@ a,span,label,i,p,div{font-weight: normal !important}
 .mega-menu .container > ul > li > a:hover{
     color: #EE2D2D
 }
-.form-search{
+/*.form-search{
     width: 45px;
     border-right: 1px solid #dfdfdf;
     border-left: 1px solid #dfdfdf;
@@ -262,7 +262,7 @@ a,span,label,i,p,div{font-weight: normal !important}
 }
 .form-search form button:hover{
     background-color: #087EB9
-}
+}*/
 
 .slider-layer{
     direction: ltr;
@@ -329,8 +329,8 @@ a,span,label,i,p,div{font-weight: normal !important}
 }
 .right-side-content .basket-side article ul li{
     width: 100%;
-    padding: 10px;
-    border-bottom: 1px dotted #dfdfdf
+    padding: 5px;
+    /*border-bottom: 1px dotted #dfdfdf*/
 }
 .right-side-content .basket-side article ul li:last-child{
     border-bottom: 0
@@ -355,15 +355,11 @@ a,span,label,i,p,div{font-weight: normal !important}
 }
 .right-side-content .basket-side article ul li span{
     color: #008DDE;
-    width: 30px;
-    height: 25px;
-    line-height: 25px;
     text-align: center;
     padding: 0 4px;
     font-family: 15px;
-    border: 1px solid #dfdfdf;
-    margin-right:10px;
 }
+
 .right-side-content .basket-side .show-basket-button{
     color: #fff;
     background-color: #1FB415;

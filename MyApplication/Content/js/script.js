@@ -1,7 +1,7 @@
 jQuery(function ($) {
 
-    $('.form-search span').click(function(){
-        $('.form-search form').slideToggle();
+    $(".form-search span").click(function(){
+        $(".form-search form").slideToggle();
     });
     $('.responsive-list').click(function(){
         $('.mega-menu .container > ul').slideToggle();

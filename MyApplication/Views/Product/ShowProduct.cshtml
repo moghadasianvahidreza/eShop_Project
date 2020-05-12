@@ -91,7 +91,7 @@
 
 			<!-- Comment -->
 			<div id="comments" class="tab-pane fade">
-				<div class="comment-layer">
+				<div class="comment-layer" id="commentProduct">
 					@Html.Action("_CreateComment")
 					<ul class="comment-list" id="listComment">
 						@Html.Action("_ShowComment")
@@ -125,5 +125,11 @@
 		$("#EmailAddress").val("");
 		$("#Website").val("");
 		$("#Comment").val("");
+		$("#ParentId").val("");
+	}
+
+	function ReplayComment(id) {
+		$("#ParentId").val(id);
+		$("html, body").delay(2000).animate({ scrollTop: $("#commentProduct").offset().top }, 2000);
 	}
 </script>

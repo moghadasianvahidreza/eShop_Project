@@ -31,7 +31,7 @@
 				<div class="clientarea">
 					<ul>
 						@Html.Partial("~/Views/Shared/PartialViews/_HasBeenLoggedUser.cshtml")
-						<li><a href=""><i class="fa fa-shopping-bag"></i> سبد خرید <span>10</span></a></li>
+						<li><a href=""><i class="fa fa-shopping-bag"></i> سبد خرید <span id="countShopCart"></span></a></li>
 					</ul>
 				</div>
 				<!-- End Clientarea and Basket -->
@@ -101,32 +101,9 @@
 			@RenderSection("Filters",false)
 
 			<!-- Basket -->
-			<section class="border-radius basket-side">
-				<header><h3> سبد خرید شما  </h3></header>
-				<article>
-					<ul>
-						<li>
-							<img class="border-radius" src="~/Content/img/1.jpg">
-							<div class="left-basket">
-								<a href="">محصول شماره یک <span class="border-radius"> 2 </span></a>
-							</div>
-						</li>
-						<li>
-							<img class="border-radius" src="~/Content/img/1.jpg">
-							<div class="left-basket">
-								<a href="">محصول شماره یک <span class="border-radius"> 2 </span></a>
-							</div>
-						</li>
-						<li>
-							<img class="border-radius" src="~/Content/img/1.jpg">
-							<div class="left-basket">
-								<a href="">محصول شماره یک <span class="border-radius"> 2 </span></a>
-							</div>
-						</li>
-					</ul>
-					<a href="" class="show-basket-button border-radius">مشاهده سبد خرید</a>
-				</article>
-			</section>
+			<div id="showCard">
+				@Html.Action("_ShowCart", "UserCart", new { area = "" })
+			</div>
 			<!-- End Basket -->
 			<!-- compare -->
 			<section class="border-radius compare-side">
@@ -243,6 +220,28 @@
 	<script src="~/Scripts/jquery.validate.min.js"></script>
 	<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+	<script>
+		$(function () {
+			countShopCart();
+		});
+
+		function countShopCart() {
+			$.get("/Api/ShopCart", function (result) {
+				$("#countShopCart").html(result);
+			});
+		}
+
+		function AddToCart(id) {
+			$.get("/Api/ShopCart/" + id, function (result) {
+				$("#countShopCart").html(result);
+				UpdataShopCard();  
+			});
+		}
+
+		function UpdataShopCard() {
+			$("#showCard").load("/UserCart/_ShowCart").fadeOut(800).fadeIn(800);
+		}
+	</script>
 </body>
 </html>
 

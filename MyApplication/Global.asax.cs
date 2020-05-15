@@ -29,5 +29,11 @@ namespace MyApplication
 			Thread.CurrentThread.CurrentCulture = persianCulture;
 			Thread.CurrentThread.CurrentUICulture = persianCulture;
 		}
-	}
+
+        // Add Session Object to Web Api
+        protected void Application_PostAuthorizeRequest()
+        {
+            System.Web.HttpContext.Current.SetSessionStateBehavior(System.Web.SessionState.SessionStateBehavior.Required);
+        }
+    }
 }

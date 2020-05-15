@@ -20,7 +20,7 @@
 				<p>
 					عنوان
 				</p>
-				<input type="text" name="title" class="form-control" value="@ViewBag.productTitle" style="width:100% !important" />
+				<input type="text" name="productTitle" class="form-control" value="@ViewBag.productTitle" style="width:100% !important" />
 				<hr />
 				<p>
 					قیمت از ...
@@ -37,7 +37,7 @@
 				</p>
 				@{
 					List<Models.ProductGroup> groups = ViewBag.productGroups;
-					List<int> selected = ViewBag.selectGroup ?? new List<int>();
+					List<int> selected = ViewBag.selectedGroups ?? new List<int>();
 
 					<ul>
 						@foreach (var item in groups.Where(current => current.ParentId == null))

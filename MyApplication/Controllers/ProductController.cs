@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -120,35 +120,34 @@ namespace MyApplication.Controllers
 			ViewBag.maxPrice = maxPrice;
 			ViewBag.selectedGroups = selectedGroups;
 
-			IQueryable<Models.Product> list = DatabaseContext.Products;
+			List<Models.Product> list = new List<Models.Product>();
 
-			//List<Models.Product> list = new List<Models.Product>();
+			if (selectedGroups != null && selectedGroups.Any())
+			{
+				foreach (int group in selectedGroups)
+				{
+					list.AddRange(DatabaseContext.ProductSelectedGroups.Where(current => current.GroupId == group).Select(s => s.Product).ToList());
+				}
+
+				list = list.Distinct().ToList();
+			}
+			else
+			{
+				list.AddRange(DatabaseContext.Products.ToList());
+			}
 
 			if (productTitle != null)
 			{
-				list = list.Where(current => current.ProductTitle.Contains(productTitle));
+				list = list.Where(current => current.ProductTitle.Contains(productTitle)).ToList();
 			}
 			if (minPrice > 0)
 			{
-				list = list.Where(current => current.Price >= minPrice);
+				list = list.Where(current => current.Price >= minPrice).ToList();
 			}
 			if (maxPrice > 0)
 			{
-				list = list.Where(current => current.Price <= maxPrice);
+				list = list.Where(current => current.Price <= maxPrice).ToList();
 			}
-
-			//if (selectedGroups != null && selectedGroups.Any())
-			//{
-			//	foreach (int group in selectedGroups)
-			//	{
-			//		list.AddRange(DatabaseContext.ProductSelectedGroups.Where(current => current.GroupId == group).Select(current => current.Product).ToList());
-			//	}
-			//	list = list.Distinct().ToList();
-			//}
-			//else
-			//{
-			//	list.AddRange(DatabaseContext.Products.ToList());
-			//}
 
 			return View(list.ToList());
 		}

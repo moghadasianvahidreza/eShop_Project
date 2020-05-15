@@ -109,7 +109,9 @@ namespace Models
 			// **************************************************
 			IList<ProductSelectedGroup> myProductSelectedGroups = new List<ProductSelectedGroup>();
 
+			myProductSelectedGroups.Add(new ProductSelectedGroup() { ProductSelectedGroupId = 1, GroupId = 10, ProductId = 1 });
 			myProductSelectedGroups.Add(new ProductSelectedGroup() { ProductSelectedGroupId = 1, GroupId = 11, ProductId = 1 });
+			myProductSelectedGroups.Add(new ProductSelectedGroup() { ProductSelectedGroupId = 2, GroupId = 13, ProductId = 2 });
 			myProductSelectedGroups.Add(new ProductSelectedGroup() { ProductSelectedGroupId = 2, GroupId = 14, ProductId = 2 });
 
 			context.ProductSelectedGroups.AddRange(myProductSelectedGroups);

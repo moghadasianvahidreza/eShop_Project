@@ -15,7 +15,7 @@
 	<section class="border-radius basket-side">
 		<header><h3> فیلتر محصولات  </h3></header>
 		<article>
-			<form action="/Archive">
+			<form action="/Archive" id="submitForm">
 				<input type="hidden" id="pageId" name="pageid" value="@ViewBag.pageId" />
 				<p>
 					عنوان
@@ -77,6 +77,25 @@
 			@Html.Partial("~/Views/Shared/PartialViews/_Product.cshtml", item)
 		}
 
-	<div class="clearfix"></div>
+		<div class="clearfix"></div>
 	</article>
 </section>
+
+@if (ViewBag.pageCount > 1)
+{
+	<div class="pagination-layer">
+		<ul class="pagination">
+			@for (int i = 1; i <= ViewBag.pageCount; i++)
+			{
+				<li><a onclick="onclick=changePage(@i)">@i</a></li>
+			}
+		</ul>
+	</div>
+}
+
+<script>
+	function changePage(pageId) {
+		$("#pageId").val(pageId);
+		$("#submitForm").submit();
+	}
+</script>

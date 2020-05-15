@@ -149,7 +149,12 @@ namespace MyApplication.Controllers
 				list = list.Where(current => current.Price <= maxPrice).ToList();
 			}
 
-			return View(list.ToList());
+			//Pagging
+			int take = 12;
+			int skip = (pageId - 1) * take;
+			ViewBag.pageCount = (list.Count() / take);
+
+			return View(list.OrderByDescending(current => current.CreateDate).Skip(skip).Take(take).ToList());
 		}
 	}
 }

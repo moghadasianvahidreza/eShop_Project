@@ -1488,6 +1488,8 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Product\Archive.cshtml" />
     <Content Include="Views\UserCart\_ShowCart.cshtml" />
+    <Content Include="Views\UserCart\Index.cshtml" />
+    <Content Include="Views\UserCart\_ListOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

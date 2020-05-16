@@ -18,7 +18,7 @@ namespace ViewModels
 		public int Count { get; set; }
 	}
 
-	public class ShopCartItemViewModel
+	public class ShopCartItemViewModel : object
 	{
 		public ShopCartItemViewModel() : base()
 		{
@@ -32,5 +32,25 @@ namespace ViewModels
 		public string ImageName { get; set; }
 
 		public int Count { get; set; }
+	}
+
+	public class ShowOrderViewModel : Object
+	{
+		public ShowOrderViewModel() : base()
+		{
+
+		}
+
+		public int ProductId { get; set; }
+
+		public string ProductTitle { get; set; }
+
+		public string ImageName { get; set; }
+
+		public int Count { get; set; }
+
+		public int Price { get; set; }
+
+		public int Sum { get; set; }
 	}
 }

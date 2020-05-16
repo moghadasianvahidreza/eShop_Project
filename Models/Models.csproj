@@ -78,6 +78,8 @@
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="DatabaseContextInitializer.cs" />
     <Compile Include="Feature.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderDetail.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductComment.cs" />
     <Compile Include="ProductFeature.cs" />

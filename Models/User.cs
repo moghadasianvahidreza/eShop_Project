@@ -7,6 +7,9 @@
 		}
 
 		// **********
+		public virtual System.Collections.Generic.IList<Order> Orders { get; set; }
+
+		// **********
 		[System.ComponentModel.DataAnnotations.Key]
 		public int Id { get; set; }
 

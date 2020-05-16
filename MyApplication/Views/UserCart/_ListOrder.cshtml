@@ -26,7 +26,7 @@
 					</li>
 					<li>
 						<p>
-							<input type="number" name="points" min="1" max="30" step="1" onclick="CommandOrder(@item.ProductId,$(this).val())" value="@item.Count">
+							<input type="number" class="form-control" name="points" min="1" max="30" step="1" onchange="CommandOrder(@item.ProductId,$(this).val())" value="@item.Count">
 						</p>
 					</li>
 					<li>
@@ -35,7 +35,8 @@
 					<li>
 						<label class="lbl-hidden"> قیمت کل : </label> <span class="lbl-price"> @item.Sum.ToString("#,0")  تومان </span>
 
-						<a href=""><i class="delete-button">X</i></a>
+						<a class="btn btn-danger btn-xs pull-left" onclick="CommandOrder(@item.ProductId,0)"><i class="fa fa-trash"></i></a>
+
 					</li>
 				</ul>
 			}
@@ -47,7 +48,7 @@
 				<li class="total-price"> مبلغ قابل پرداخت : <span> @Model.Sum(current => current.Sum).ToString("#,0") تومان </span></li>
 			</ul>
 		</div>
-		<button type="button" class="border-radius submit-basket-button"> تایید و پرداخت </button>
+		<a href="/UserCart/Payment" type="button" class="border-radius submit-basket-button"> تایید و پرداخت </a>
 		<div class="clearfix"></div>
 	</section>
 </div>

@@ -25,9 +25,11 @@
 
 		public System.Data.Entity.DbSet<Role> Roles { get; set; }
 		public System.Data.Entity.DbSet<User> Users { get; set; }
+		public System.Data.Entity.DbSet<Order> Orders { get; set; }
 		public System.Data.Entity.DbSet<Feature> Features { get; set; }
 		public System.Data.Entity.DbSet<Product> Products { get; set; }
 		public System.Data.Entity.DbSet<ProductTag> ProductTags { get; set; }
+		public System.Data.Entity.DbSet<OrderDetail> OrderDetails { get; set; }
 		public System.Data.Entity.DbSet<ProductGroup> ProductGroups { get; set; }
 		public System.Data.Entity.DbSet<ProductComment> ProductComments { get; set; }
 		public System.Data.Entity.DbSet<ProductFeature> ProductFeatures { get; set; }

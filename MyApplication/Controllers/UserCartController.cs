@@ -38,42 +38,16 @@ namespace MyApplication.Controllers
 			return PartialView(list);
 		}
 
+		// ******************************
+		// ******************************
+
 		public ActionResult Index()
 		{
 			return View();
 		}
 
-		public ActionResult _ListOrder()
-		{
-			List<ViewModels.ShowOrderViewModel> list = new List<ViewModels.ShowOrderViewModel>();
-
-			if (Session["ShopCart"] != null)
-			{
-				List<ViewModels.ShopCartViewModel> listShop = Session["ShopCart"] as List<ViewModels.ShopCartViewModel>;
-
-				foreach (var item in listShop)
-				{
-					var product = DatabaseContext.Products.Where(current => current.ProductId == item.ProductId).Select(p => new
-					{
-						p.ImageName,
-						p.ProductTitle,
-						p.Price,
-					}).FirstOrDefault();
-
-					list.Add(new ViewModels.ShowOrderViewModel()
-					{
-						Count = item.Count,
-						ProductId = item.ProductId,
-						ImageName = product.ImageName,
-						ProductTitle = product.ProductTitle,
-						Price = product.Price,
-						Sum = item.Count * product.Price,
-					});
-				}
-			}
-
-			return PartialView(GetListOrder());
-		}
+		// ******************************
+		// ******************************
 
 		// Clean Code => Build a Method
 		List<ViewModels.ShowOrderViewModel> GetListOrder()
@@ -108,6 +82,17 @@ namespace MyApplication.Controllers
 			return list;
 		}
 
+		// ******************************
+		// ******************************
+
+		public ActionResult _ListOrder()
+		{
+			return PartialView(GetListOrder());
+		}
+
+		// ******************************
+		// ******************************
+
 		public ActionResult CommandOrder(int id, int count)
 		{
 			List<ViewModels.ShopCartViewModel> listShop = Session["ShopCart"] as List<ViewModels.ShopCartViewModel>;
@@ -124,7 +109,43 @@ namespace MyApplication.Controllers
 			Session["ShopCart"] = listShop;
 
 
-			return PartialView(" _ListOrder", GetListOrder());
+			return PartialView("_ListOrder", GetListOrder());
+		}
+
+		// ******************************
+		// ******************************
+
+		[Authorize]
+		public ActionResult Payment()
+		{
+			int userId = DatabaseContext.Users.Where(current => current.Username == User.Identity.Name).Select(p => p.Id).FirstOrDefault();
+			Models.Order order = new Models.Order()
+			{
+				UserId = userId,
+				Date = DateTime.Now,
+				IsFinaly = false,
+			};
+
+			DatabaseContext.Orders.Add(order);
+
+			var listDetail = GetListOrder();
+
+			foreach (var item in listDetail)
+			{
+				DatabaseContext.OrderDetails.Add(new Models.OrderDetail()
+				{
+					Count = item.Count,
+					ProductId = item.ProductId,
+					OrderId = order.OrderId,
+					Price = item.Price,
+				});
+			}
+
+			DatabaseContext.SaveChanges();
+
+			//TODO : Online Payment
+
+			return null;
 		}
 	}
 }

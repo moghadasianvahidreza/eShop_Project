@@ -89,6 +89,7 @@
     <Compile Include="ProductTag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="Slider.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>

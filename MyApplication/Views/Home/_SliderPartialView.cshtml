@@ -1,12 +1,15 @@
-﻿<!-- slider -->
+﻿@model IEnumerable<Models.Slider>
+
+<!-- slider -->
 <div class="slider-layer">
 	<div id="slider-one" class="owl-carousel">
-		<div class="item">
-			<a href=""><img src="~/Content/img/NewSlider.jpg" title="تست عنوان"></a>
-		</div>
-		<div class="item">
-			<a href=""><img src="~/Content/img/NewSlider.jpg" title="تست عنوان"></a>
-		</div>
+		@foreach (var item in Model)
+		{
+			<div class="item">
+				<a href="@item.Url"><img src="~/Images/SliderImages/@item.ImageName" title="@item.Tiltle"></a>
+			</div>
+		}
+
 	</div>
 </div>
 <!-- End slider -->

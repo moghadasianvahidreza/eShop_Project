@@ -126,6 +126,7 @@
     <Content Include="Areas\Admin\Content\js\demo\flot-demo.js" />
     <Content Include="Areas\Admin\Content\js\demo\morris-demo.js" />
     <Content Include="Areas\Admin\Content\js\jquery-1.10.2.js" />
+    <Content Include="Areas\Admin\Content\js\kendo.all.min.js" />
     <Content Include="Areas\Admin\Content\js\plugins\dataTables\dataTables.bootstrap.js" />
     <Content Include="Areas\Admin\Content\js\plugins\dataTables\jquery.dataTables.js" />
     <Content Include="Areas\Admin\Content\js\plugins\flot\excanvas.min.js" />
@@ -1384,6 +1385,11 @@
     <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\Admin\Views\Shared\_DefaultAdmin.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Sliders\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Sliders\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Sliders\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Sliders\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Sliders\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Images\ProductImages\1.png" />
     <Content Include="Images\ProductImages\11.jpg" />
@@ -1429,6 +1435,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SlidersController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\UserPanel\Controllers\AccountController.cs" />
     <Compile Include="Areas\UserPanel\UserPanelAreaRegistration.cs" />
@@ -1502,6 +1509,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\UserPanel\Data\" />
     <Folder Include="Areas\UserPanel\Views\Shared\" />
+    <Folder Include="Images\SliderImages\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

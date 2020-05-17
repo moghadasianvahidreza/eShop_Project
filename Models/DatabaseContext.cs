@@ -26,6 +26,7 @@
 		public System.Data.Entity.DbSet<Role> Roles { get; set; }
 		public System.Data.Entity.DbSet<User> Users { get; set; }
 		public System.Data.Entity.DbSet<Order> Orders { get; set; }
+		public System.Data.Entity.DbSet<Slider> Sliders { get; set; }
 		public System.Data.Entity.DbSet<Feature> Features { get; set; }
 		public System.Data.Entity.DbSet<Product> Products { get; set; }
 		public System.Data.Entity.DbSet<ProductTag> ProductTags { get; set; }

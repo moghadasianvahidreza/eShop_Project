@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ViewModels.CompareItemViewModel>
+
+@if (Model.Any())
+{
+	<section class="border-radius compare-side">
+		<header><h3> لیست مقایسه </h3></header>
+		<article>
+			<ul>
+				@foreach (var item in Model)
+				{
+				<li>
+					<a href="">@item.Title </a>
+					<i class="btn btn-default btn-sm fa fa-trash pull-left" onclick="DeleteCompare(@item.ProductId)"></i>
+				</li>
+				}
+			</ul>
+			<a href="/Compare " class="show-compare-list border-radius">مشاهده لیست مقایسه</a>
+		</article>
+	</section>
+}
+

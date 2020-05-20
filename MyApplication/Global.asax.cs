@@ -12,15 +12,15 @@ using System.Web.Http;
 
 namespace MyApplication
 {
-    public class Global : HttpApplication
-    {
-        void Application_Start(object sender, EventArgs e)
-        {
-            // Code that runs on application startup
-            AreaRegistration.RegisterAllAreas();
-            GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-        }
+	public class Global : HttpApplication
+	{
+		void Application_Start(object sender, EventArgs e)
+		{
+			// Code that runs on application startup
+			AreaRegistration.RegisterAllAreas();
+			GlobalConfiguration.Configure(WebApiConfig.Register);
+			RouteConfig.RegisterRoutes(RouteTable.Routes);
+		}
 
 		//Add using System.Threading To namespace
 		protected void Application_BeginRequest(object sender, EventArgs e)
@@ -30,10 +30,31 @@ namespace MyApplication
 			Thread.CurrentThread.CurrentUICulture = persianCulture;
 		}
 
-        // Add Session Object to Web Api
-        protected void Application_PostAuthorizeRequest()
-        {
-            System.Web.HttpContext.Current.SetSessionStateBehavior(System.Web.SessionState.SessionStateBehavior.Required);
-        }
-    }
+		// Add Session Object to Web Api
+		protected void Application_PostAuthorizeRequest()
+		{
+			System.Web.HttpContext.Current.SetSessionStateBehavior(System.Web.SessionState.SessionStateBehavior.Required);
+		}
+
+		protected void Session_Start()
+		{
+			string ip = Request.UserHostAddress;
+
+			System.DateTime date = DateTime.Now.Date;
+
+			using (Models.DatabaseContext databaseContext = new Models.DatabaseContext())
+			{
+				if (!databaseContext.SiteVisits.Any(current => current.Ip == ip && current.Date == date))
+				{
+					databaseContext.SiteVisits.Add(new Models.SiteVisit()
+					{
+						Ip = ip,
+						Date = DateTime.Now,
+					});
+
+					databaseContext.SaveChanges();
+				}
+			}
+		}
+	}
 }

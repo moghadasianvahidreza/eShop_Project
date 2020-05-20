@@ -29,6 +29,7 @@
 		public System.Data.Entity.DbSet<Slider> Sliders { get; set; }
 		public System.Data.Entity.DbSet<Feature> Features { get; set; }
 		public System.Data.Entity.DbSet<Product> Products { get; set; }
+		public System.Data.Entity.DbSet<SiteVisit> SiteVisits { get; set; }
 		public System.Data.Entity.DbSet<ProductTag> ProductTags { get; set; }
 		public System.Data.Entity.DbSet<OrderDetail> OrderDetails { get; set; }
 		public System.Data.Entity.DbSet<ProductGroup> ProductGroups { get; set; }

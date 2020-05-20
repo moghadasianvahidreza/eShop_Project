@@ -62,6 +62,7 @@
     <Compile Include="RecoveryPasswordViewModel.cs" />
     <Compile Include="RegisterViewModel.cs" />
     <Compile Include="ShopCartViewModel.cs" />
+    <Compile Include="VisitSiteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

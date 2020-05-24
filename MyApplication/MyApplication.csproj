@@ -1502,6 +1502,7 @@
     <Content Include="Views\UserCart\_ListOrder.cshtml" />
     <Content Include="Views\Compare\ListCompare.cshtml" />
     <Content Include="Views\Compare\Index.cshtml" />
+    <Content Include="Views\Home\VisitSite.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

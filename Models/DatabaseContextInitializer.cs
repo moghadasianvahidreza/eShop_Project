@@ -150,6 +150,16 @@ namespace Models
 			// **************************************************
 			// **************************************************
 
+			IList<SiteVisit> mySiteVisits = new List<SiteVisit>();
+
+			mySiteVisits.Add(new SiteVisit() { VisitId = 1, Date = "1399/03/03", Ip = "::1" });
+			mySiteVisits.Add(new SiteVisit() { VisitId = 2, Date = "1399/03/03", Ip = "::1" });
+
+			context.SiteVisits.AddRange(mySiteVisits);
+
+			// **************************************************
+			// **************************************************
+
 			base.Seed(context);
 		}
 

@@ -97,7 +97,22 @@
 
 	<div class="container margin-top-25">
 		<aside class="col-md-3 col-sm-4 right-side-content">
-
+			@if (User.Identity.IsAuthenticated)
+			{
+				<section class="border-radius category-side">
+					<header><h3>پنل کاربری</h3></header>
+					<article>
+						<ul>
+							<li>
+								<a href="/UserPanel/Account/ChangePasswordUser">تغییر رمز عبور</a>
+							</li>
+							<li>
+								<a href="LogOut">خروج از حساب کاربری</a>
+							</li>
+						</ul>
+					</article>
+				</section>
+			}
 			@RenderSection("Filters", false)
 
 			<!-- Basket -->
@@ -115,6 +130,7 @@
 			<!-- End Category -->
 			<!-- Category -->
 			<!-- End Category -->
+			@Html.Action("VisitSite", "Home", new { area = "" })
 		</aside>
 
 		<div class="col-md-9 col-sm-8 left-side-content">

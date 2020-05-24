@@ -26,6 +26,6 @@ namespace Models
 
 		// **********
 		[Display(Name = "تاریخ بازدید کاربر")]
-		public DateTime Date { get; set; }
+		public string Date { get; set; }
 	}
 }

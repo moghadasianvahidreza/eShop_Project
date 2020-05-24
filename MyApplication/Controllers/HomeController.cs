@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MyApplication.Utilities;
 
 namespace MyApplication.Controllers
 {
@@ -14,10 +15,16 @@ namespace MyApplication.Controllers
 			return View();
 		}
 
+		// ******************************
+		// ******************************
+
 		public ViewResult AboutUs()
 		{
 			return View();
 		}
+
+		// ******************************
+		// ******************************
 
 		[ChildActionOnly]
 		public PartialViewResult _SliderPartialView()
@@ -27,19 +34,26 @@ namespace MyApplication.Controllers
 			return PartialView(slider);
 		}
 
+		// ******************************
+		// ******************************
+
 		public ActionResult VisitSite()
 		{
-			System.DateTime date = DateTime.Now.Date;
-			DateTime yesterday = date.AddDays(-1);
+			DateTime date = DateTime.Now;
+			string today = date.ToShamsiWithoutTime();
+
+			DateTime dayBefore = DateTime.Now.AddDays(-1);
+			string yesterday = dayBefore.ToShamsiWithoutTime();
 
 			ViewModels.VisitSiteViewModel visitSiteViewModel = new ViewModels.VisitSiteViewModel()
 			{
 				VisitSum = DatabaseContext.SiteVisits.Count(),
-				VisitToday = DatabaseContext.SiteVisits.Count(current => current.Date == date),
+				VisitToday = DatabaseContext.SiteVisits.Count(current => current.Date == today),
 				VisitYesterday = DatabaseContext.SiteVisits.Count(current => current.Date == yesterday),
+				Online = int.Parse(HttpContext.Application["Online"].ToString()),
 			};
 
-			return PartialView();
+			return PartialView(visitSiteViewModel);
 		}
 	}
 }

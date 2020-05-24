@@ -20,7 +20,11 @@ namespace MyApplication
 			AreaRegistration.RegisterAllAreas();
 			GlobalConfiguration.Configure(WebApiConfig.Register);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
+			HttpContext.Current.Application["Online"] = 0;
 		}
+
+		// ******************************
+		// ******************************
 
 		//Add using System.Threading To namespace
 		protected void Application_BeginRequest(object sender, EventArgs e)
@@ -30,31 +34,49 @@ namespace MyApplication
 			Thread.CurrentThread.CurrentUICulture = persianCulture;
 		}
 
+		// ******************************
+		// ******************************
+
 		// Add Session Object to Web Api
 		protected void Application_PostAuthorizeRequest()
 		{
 			System.Web.HttpContext.Current.SetSessionStateBehavior(System.Web.SessionState.SessionStateBehavior.Required);
 		}
 
+		// ******************************
+		// ******************************
+
 		protected void Session_Start()
 		{
+			int online = int.Parse(HttpContext.Current.Application["Online"].ToString());
+			online += 1;
+			HttpContext.Current.Application["Online"] = online;
+
 			string ip = Request.UserHostAddress;
 
-			System.DateTime date = DateTime.Now.Date;
+			System.DateTime date = DateTime.Now;
+			string dateWithoutTime = date.ToShamsiWithoutTime();
 
 			using (Models.DatabaseContext databaseContext = new Models.DatabaseContext())
 			{
-				if (!databaseContext.SiteVisits.Any(current => current.Ip == ip && current.Date == date))
+				if (!databaseContext.SiteVisits.Any(current => current.Ip == ip && current.Date == dateWithoutTime))
 				{
 					databaseContext.SiteVisits.Add(new Models.SiteVisit()
 					{
 						Ip = ip,
-						Date = DateTime.Now,
+						Date = dateWithoutTime,
 					});
 
 					databaseContext.SaveChanges();
 				}
 			}
+		}
+
+		protected void Session_End()
+		{
+			int online = int.Parse(HttpContext.Current.Application["Online"].ToString());
+			online -= 1;
+			HttpContext.Current.Application["Online"] = online;
 		}
 	}
 }

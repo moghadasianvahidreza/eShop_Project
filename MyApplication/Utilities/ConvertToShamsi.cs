@@ -22,5 +22,17 @@ namespace MyApplication
 
 			return ShamsiDate;
 		}
+
+		public static string ToShamsiWithoutTime(this DateTime dateTime)
+		{
+			System.Globalization.PersianCalendar persianCalendar = new System.Globalization.PersianCalendar();
+
+			var ShamsiDate =
+				persianCalendar.GetYear(dateTime) + "/" +
+				persianCalendar.GetMonth(dateTime).ToString("00") + "/" +
+				persianCalendar.GetDayOfMonth(dateTime).ToString("00");
+
+			return ShamsiDate;
+		}
 	}
 }

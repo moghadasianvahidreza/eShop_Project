@@ -18,5 +18,7 @@ namespace ViewModels
 		public int VisitYesterday { get; set; }
 
 		public int VisitSum { get; set; }
+
+		public int Online { get; set; }
 	}
 }
